@@ -5,6 +5,7 @@ import io
 import re
 import sqlite3
 import nltk
+import os
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 
@@ -326,8 +327,15 @@ st.markdown("""
 # -----------------------------
 # LOAD MODEL
 # -----------------------------
-model = pickle.load(open("sentiment_model.pkl", "rb"))
-vectorizer = pickle.load(open("tfidf_vectorizer.pkl", "rb"))
+
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+model_path = os.path.join(BASE_DIR, "sentiment_model.pkl")
+vectorizer_path = os.path.join(BASE_DIR, "tfidf_vectorizer.pkl")
+
+model = pickle.load(open(model_path, "rb"))
+vectorizer = pickle.load(open(vectorizer_path, "rb"))
 
 # -----------------------------
 # PREPROCESSING
